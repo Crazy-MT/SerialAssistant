@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sysout.app.serial.ui.activity.MainActivity">
+
+    <item
+        android:id="@+id/main_menu_logs"
+        android:orderInCategory="100"
+        android:title="@string/serial_logs"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/main_menu_setting"
+        android:orderInCategory="100"
+        android:title="@string/serial_setting"
+        app:showAsAction="never"/>
+
+</menu>

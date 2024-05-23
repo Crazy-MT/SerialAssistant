@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ControlParamsActivity">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.SerialAssistant.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/icon_back_white"
+            app:popupTheme="@style/Theme.SerialAssistant.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/bt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:text="返回"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_shake"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="@color/text_yellow"
+                    android:text="摇头" />
+
+                <Button
+                    android:id="@+id/bt_shake_zero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="@color/text_red"
+                    android:text="归零" />
+
+                <Button
+                    android:id="@+id/bt_shake_offset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="@color/text_yellow"
+                    android:text="偏移" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingRight="6dp">
+
+                <Button
+                    android:id="@+id/bt_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/text_yellow"
+                    android:text="左"
+                    android:textSize="@dimen/textSize_small" />
+
+
+                <Button
+                    android:id="@+id/bt_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/text_yellow"
+                    android:text="右"
+                    android:textSize="@dimen/textSize_small" />
+
+
+                <Button
+                    android:id="@+id/bt_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/text_yellow"
+                    android:text="时间"
+                    android:textAllCaps="false"
+                    android:textSize="8sp" />
+
+                <Button
+                    android:id="@+id/bt_repeat_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/text_yellow"
+                    android:text="次数"
+                    android:textSize="@dimen/textSize_small" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_shake_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_nod"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="@color/blue"
+                    android:text="点头" />
+
+                <Button
+                    android:id="@+id/bt_nod_zero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="@color/text_red"
+                    android:text="归零" />
+
+                <Button
+                    android:id="@+id/bt_nod_offset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:backgroundTint="@color/blue"
+                    android:text="偏移" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingRight="6dp">
+
+                <Button
+                    android:id="@+id/bt_nod_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/blue"
+                    android:text="上"
+                    android:textSize="@dimen/textSize_small" />
+
+
+                <Button
+                    android:id="@+id/bt_nod_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/blue"
+                    android:text="下"
+                    android:textSize="@dimen/textSize_small" />
+
+
+                <Button
+                    android:id="@+id/bt_nod_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/blue"
+                    android:text="时间"
+                    android:textAllCaps="false"
+                    android:textSize="8sp" />
+
+                <Button
+                    android:id="@+id/bt_nod_repeat_count"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/blue"
+                    android:text="次数"
+                    android:textSize="@dimen/textSize_small" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_nod_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

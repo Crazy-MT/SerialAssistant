@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.SerialAssistant.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/icon_back_white"
+            app:popupTheme="@style/Theme.SerialAssistant.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <Button
+        android:id="@+id/bt_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="12dp"
+        android:text="返回"
+        android:visibility="gone" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="12dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="串口名称："
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize_large" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:hint="@string/info_hint_please_input"
+            android:minWidth="90dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/textSize_large" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="串口号："
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSize_large" />
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:hint="@string/info_hint_please_input"
+            android:inputType="number"
+            android:minWidth="90dp"
+            android:paddingRight="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/textSize_large" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="12dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_open"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开" />
+
+
+        <Button
+            android:id="@+id/bt_colse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:text="关闭" />
+
+
+        <TextView
+            android:id="@+id/tv_open_status_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="打开状态"
+            android:textColor="@color/text_green"
+            android:textColorHint="@color/text_green" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/text_yellow"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="指令"
+            android:textColor="@color/white" />
+
+
+        <EditText
+            android:id="@+id/et_order"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:background="@color/white"
+            android:hint="@string/info_hint_please_input"
+            android:inputType="number"
+            android:minWidth="65dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="@dimen/textSize_large" />
+
+        <Button
+            android:id="@+id/bt_sel_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/text_green"
+            android:text="选择" />
+
+        <TextView
+            android:id="@+id/tv_order_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="8dp"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/ll_code"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/text_green"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="参数"
+                android:textColor="@color/white" />
+
+
+            <EditText
+                android:id="@+id/et_code01"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+
+            <EditText
+                android:id="@+id/et_code02"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+
+            <EditText
+                android:id="@+id/et_code03"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+
+            <EditText
+                android:id="@+id/et_code04"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/et_code05"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+
+            <EditText
+                android:id="@+id/et_code06"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/et_code07"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+
+            <EditText
+                android:id="@+id/et_code08"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/et_code09"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/et_code10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/et_code11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <EditText
+                android:id="@+id/et_code12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:background="@color/white"
+                android:hint="@string/info_hint_please_input"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minWidth="65dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="@dimen/textSize" />
+
+            <TextView
+                android:id="@+id/tv_codes_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/ll_sel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/text_red"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:text="选择"
+                android:textColor="@color/white" />
+
+
+            <Button
+                android:id="@+id/bt_sel01"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+
+            <Button
+                android:id="@+id/bt_sel02"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel03"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel04"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+
+            <Button
+                android:id="@+id/bt_sel05"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+
+            <Button
+                android:id="@+id/bt_sel06"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel07"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+
+            <Button
+                android:id="@+id/bt_sel08"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel09"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel10"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel11"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/bt_sel12"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="选择"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="12dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送" />
+
+
+        <TextView
+            android:id="@+id/tv_send_status_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:hint="发送状态"
+            android:textColor="@color/text_green"
+            android:textColorHint="@color/text_green" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_ricever_status_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:hint="接收状态"
+        android:textColor="@color/text_red"
+        android:textColorHint="@color/text_red" />
+
+</LinearLayout>

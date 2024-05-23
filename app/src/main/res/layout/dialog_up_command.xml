@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="300dp"
+    android:layout_gravity="center"
+    android:padding="20dp"
+    android:background="@drawable/public_shape_white_corner_5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/serial_remark"
+            android:textColor="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/serial_up_command_mark"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:inputType="text"
+            android:imeOptions="actionNext"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/serial_command"
+            android:textColor="@color/black"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/serial_up_command_comm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLines="1"
+            android:imeOptions="actionNext"/>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/serial_up_command_commit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/serial_commit"/>
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sysout.app.serial.ui.activity.MainActivity">
+
+    <item
+        android:id="@+id/load_command_menu_commit"
+        android:orderInCategory="100"
+        android:title="@string/serial_commit"
+        app:showAsAction="ifRoom"/>
+
+</menu>

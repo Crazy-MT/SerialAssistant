@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.CalibrationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.SerialAssistant.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/icon_back_white"
+            app:popupTheme="@style/Theme.SerialAssistant.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:text="返回"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/bt_down_electricity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:text="断电" />
+
+
+        <Button
+            android:id="@+id/bt_up_electricity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:text="上电" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_port_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/text_red"
+        android:textSize="@dimen/textSize_large" />
+
+    <TextView
+        android:id="@+id/tv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="6dp"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/textSize_small" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <TextView
+            android:id="@+id/tv_shake_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="摇\n头\n舵\n机"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/bt_shake_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="左极限位"
+            app:layout_constraintLeft_toRightOf="@id/tv_shake_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_shake_left_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_shake_left"
+            app:layout_constraintLeft_toRightOf="@id/bt_shake_left"
+            app:layout_constraintTop_toTopOf="@id/bt_shake_left" />
+
+
+        <Button
+            android:id="@+id/bt_shake_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="右极限位"
+            app:layout_constraintLeft_toRightOf="@id/tv_shake_title"
+            app:layout_constraintTop_toBottomOf="@id/bt_shake_left"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_shake_right_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_shake_right"
+            app:layout_constraintLeft_toRightOf="@id/bt_shake_left"
+            app:layout_constraintTop_toTopOf="@id/bt_shake_right" />
+
+
+        <Button
+            android:id="@+id/bt_shake_calibration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="校准"
+            app:layout_constraintBottom_toTopOf="@id/tv_shake_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_shake_title"
+            app:layout_constraintTop_toBottomOf="@id/bt_shake_right"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_shake_calibration_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_shake_calibration"
+            app:layout_constraintLeft_toRightOf="@id/bt_shake_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bt_shake_calibration" />
+
+
+        <Button
+            android:id="@+id/bt_shake_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/text_red"
+            android:text="转到零位"
+            app:layout_constraintBottom_toBottomOf="@id/bt_shake_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bt_shake_left"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_shake_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="请处于右极限位置，再按校准按钮"
+            android:textColor="@color/text_red"
+            app:layout_constraintLeft_toLeftOf="@id/bt_shake_calibration"
+            app:layout_constraintTop_toBottomOf="@id/bt_shake_calibration"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_green_50"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <TextView
+            android:id="@+id/tv_nod_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点\n头\n舵\n机"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <Button
+            android:id="@+id/bt_nod_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="上极限位"
+            app:layout_constraintLeft_toRightOf="@id/tv_nod_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_nod_left_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_nod_left"
+            app:layout_constraintLeft_toRightOf="@id/bt_nod_left"
+            app:layout_constraintTop_toTopOf="@id/bt_nod_left" />
+
+
+        <Button
+            android:id="@+id/bt_nod_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="下极限位"
+            app:layout_constraintLeft_toRightOf="@id/tv_nod_title"
+            app:layout_constraintTop_toBottomOf="@id/bt_nod_left"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_nod_right_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_nod_right"
+            app:layout_constraintLeft_toRightOf="@id/bt_nod_left"
+            app:layout_constraintTop_toTopOf="@id/bt_nod_right" />
+
+
+        <Button
+            android:id="@+id/bt_nod_calibration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="校准"
+            app:layout_constraintBottom_toTopOf="@id/tv_nod_hint"
+            app:layout_constraintLeft_toRightOf="@id/tv_nod_title"
+            app:layout_constraintTop_toBottomOf="@id/bt_nod_right"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_nod_calibration_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_nod_calibration"
+            app:layout_constraintLeft_toRightOf="@id/bt_nod_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bt_nod_calibration" />
+
+
+        <Button
+            android:id="@+id/bt_nod_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/text_red"
+            android:text="转到零位"
+            app:layout_constraintBottom_toBottomOf="@id/bt_nod_left"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bt_nod_left"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_nod_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:text="请处于下极限位置，再按校准按钮"
+            android:textColor="@color/text_red"
+            app:layout_constraintLeft_toLeftOf="@id/bt_nod_calibration"
+            app:layout_constraintTop_toBottomOf="@id/bt_nod_calibration"
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+
+        <TextView
+            android:id="@+id/tv_rotate_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="转身\n舵机"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/bt_rotate_calibration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="校准"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_rotate_title"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_rotate_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="- -"
+            android:textColor="@color/text_red"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/bt_rotate_calibration"
+            app:layout_constraintLeft_toRightOf="@id/bt_rotate_calibration"
+            app:layout_constraintTop_toTopOf="@id/bt_rotate_calibration" />
+
+
+        <Button
+            android:id="@+id/bt_rotate_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/text_red"
+            android:text="转到零位"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sysout.app.serial.ui.activity.MainActivity">
+
+    <item
+        android:id="@+id/logs_menu_clear"
+        android:orderInCategory="100"
+        android:title="@string/serial_logs_clear"
+        app:showAsAction="ifRoom"/>
+
+</menu>
