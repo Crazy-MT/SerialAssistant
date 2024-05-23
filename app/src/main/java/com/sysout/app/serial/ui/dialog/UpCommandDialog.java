@@ -21,10 +21,6 @@ import android.text.InputType;
 import android.text.method.KeyListener;
 import android.text.method.NumberKeyListener;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,7 +31,6 @@ import com.google.android.material.button.MaterialButton;
 import com.sysout.app.serial.R;
 import com.sysout.app.serial.db.SerialCommandServiceImpl;
 import com.sysout.app.serial.entity.SerialCommand;
-import com.sysout.app.serial.ui.activity.LoadCommandActivity;
 
 
 /**

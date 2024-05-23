@@ -26,6 +26,7 @@ public abstract class SerialHelper{
     private SerialPort mSerialPort;
     private OutputStream mOutputStream;
     private InputStream mInputStream;
+//    private WeightReadThread mReadThread;
     private ReadThread mReadThread;
     private SendThread mSendThread;
 
@@ -69,6 +70,7 @@ public abstract class SerialHelper{
         mSerialPort =  new SerialPort(new File(sPort), iBaudRate, parity, dataBits, stopBit, 0);
         mOutputStream = mSerialPort.getOutputStream();
         mInputStream = mSerialPort.getInputStream();
+//        mReadThread = new WeightReadThread();
         mReadThread = new ReadThread();
         mReadThread.start();
         mSendThread = new SendThread();
@@ -109,11 +111,39 @@ public abstract class SerialHelper{
         byte[] bOutArray =sTxt.getBytes();
         send(bOutArray);
     }
-    //----------------------------------------------------
+
     private class ReadThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            while(!isInterrupted()) {
+                try
+                {
+                    if (mInputStream == null) return;
+                    int size = mInputStream.read(tempBuff);
+                    if (size > 0){
+                        onDataReceived(Arrays.copyOfRange(tempBuff, 0, size));
+                    }
+                    try
+                    {
+                        Thread.sleep(10);//延时10ms
+                    } catch (InterruptedException e)
+                    {
+                        e.printStackTrace();
+                    }
+                } catch (Throwable e)
+                {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        }
+    }
+    //----------------------------------------------------
+    private class WeightReadThread extends Thread {
         private final PacketInputStream packetInputStream;
 
-        public ReadThread() {
+        public WeightReadThread() {
             this.packetInputStream = new PacketInputStream(mInputStream, new WeightPacketParser());
         }
 

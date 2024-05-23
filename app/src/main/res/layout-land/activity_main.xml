@@ -110,12 +110,6 @@
                     android:onClick="sendClearOnClick"
                     android:text="@string/serial_clear"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="loadCommand"
-                    android:text="@string/serial_load_command"/>
-
                 <RadioGroup
                     android:id="@+id/serial_rg_write_mode"
                     android:layout_width="match_parent"

@@ -201,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
                 serialHelper.close();
                 serialHelper = null;
                 Toast.makeText(this, "关闭串口成功！", Toast.LENGTH_SHORT).show();
-                stopLogRecord();
             }
         });
     }
@@ -233,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     sb.append("\r\n");
                     setSerialTvRead(sb.toString());
-                    logRecord(sb.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -247,14 +245,9 @@ public class MainActivity extends AppCompatActivity {
                     sb.append("[").append(selectPort).append("]");
                     sb.append("[Read]");
                     sb.append("[").append("Txt").append("] ");
-//                    if (readMode == 0) {
-//                        sb.append(MathUtil.bytesToHex(buff));
-//                    } else {
-                        sb.append(packet.getNetWeight() + " " + packet.isStableWeight());
-//                    }
+                    sb.append(packet.getNetWeight() + " " + packet.isStableWeight());
                     sb.append("\r\n");
                     setSerialTvRead(sb.toString());
-                    logRecord(sb.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -275,7 +268,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                     sb.append("\r\n");
                     setSerialTvRead(sb.toString());
-                    logRecord(sb.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -284,12 +276,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             serialHelper.open();
             Toast.makeText(this, "打开串口成功！", Toast.LENGTH_SHORT).show();
-            startLogRecord();
-//            MMKV.defaultMMKV().encode("serial_port", selectPort);
-//            MMKV.defaultMMKV().encode("serial_baud", selectBaud);
-//            MMKV.defaultMMKV().encode("serial_parity", selectParity);
-//            MMKV.defaultMMKV().encode("serial_data_bits", selectDataBits);
-//            MMKV.defaultMMKV().encode("serial_stop_bit", selectStopBit);
         } catch (Exception e) {
             Log.i(TAG, "打开串口失败：" + e.toString());
             Toast.makeText(this, "打开失败:" + e.toString(), Toast.LENGTH_SHORT).show();
@@ -578,16 +564,6 @@ public class MainActivity extends AppCompatActivity {
         serialEtSend6.setText("");
     }
 
-    public void loadCommand(View view) {
-        if (serialCbLoopSend.isChecked()) {
-            Toast.makeText(MainActivity.this, "请先停止自动循环发送！", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        Intent intent = new Intent(this, LoadCommandActivity.class);
-        intent.putExtra("writeMode", writeMode);
-        startActivityForResult(intent, RESULT_CODE);
-    }
-
     public void send1OnClick(View view) {
         if (!serialOpened()) {
             Toast.makeText(MainActivity.this, "请先打开串口！", Toast.LENGTH_SHORT).show();
@@ -685,113 +661,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.main_menu_setting) {
-            startActivity(new Intent(this, SettingActivity.class));
-        } else if (id == R.id.main_menu_logs) {
-            startActivity(new Intent(this, LogsActivity.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_CODE && resultCode == LoadCommandActivity.RESULT_CODE) {
-            if (null != data) {
-                List<SerialCommand> commandList = data.getParcelableArrayListExtra("result");
-                for (SerialCommand serialCommand : commandList) {
-                    if (ObjectUtils.isEmpty(serialEtSend1.getText().toString())) {
-                        serialEtSend1.setText(serialCommand.getCommand());
-                        continue;
-                    }
-                    if (ObjectUtils.isEmpty(serialEtSend2.getText().toString())) {
-                        serialEtSend2.setText(serialCommand.getCommand());
-                        continue;
-                    }
-                    if (ObjectUtils.isEmpty(serialEtSend3.getText().toString())) {
-                        serialEtSend3.setText(serialCommand.getCommand());
-                        continue;
-                    }
-                    if (ObjectUtils.isEmpty(serialEtSend4.getText().toString())) {
-                        serialEtSend4.setText(serialCommand.getCommand());
-                        continue;
-                    }
-                    if (ObjectUtils.isEmpty(serialEtSend5.getText().toString())) {
-                        serialEtSend5.setText(serialCommand.getCommand());
-                        continue;
-                    }
-                    if (ObjectUtils.isEmpty(serialEtSend6.getText().toString())) {
-                        serialEtSend6.setText(serialCommand.getCommand());
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    private void startLogRecord() {
-        if (!MMKV.defaultMMKV().decodeBool(Constants.MMKV_KEY_SAVE_LOG, false)) { //没开启保存日志，请在设置里设置开启
-            return;
-        }
-        try {
-            File filePath = new File(Constants.LOGS_PATH);
-            if (!filePath.exists()) {
-                filePath.mkdirs();
-            }
-            File file = new File(Constants.LOGS_PATH, TimeUtils.date2String(new Date(), "yyyyMMddHHmmss") + ".txt");
-            outputStream = new FileOutputStream(file);
-            logWriter = new OutputStreamWriter(outputStream);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void stopLogRecord() {
-        if (null != logWriter) {
-            try {
-                logWriter.close();
-                logWriter = null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if (null != outputStream) {
-            try {
-                outputStream.close();
-                outputStream = null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void logRecord(String log) {
-        try {
-            if (null != logWriter) {
-                logWriter.write(log);
-                logWriter.flush();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (serialHelper != null && serialHelper.isOpen()) {
             serialHelper.close();
         }
-        stopLogRecord();
     }
 }
